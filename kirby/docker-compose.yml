@@ -1,0 +1,20 @@
+version: '2'
+services:
+    apache-php:
+        image: kuix/kirby
+        volumes:
+            - ./:/var/www/html
+        ports:
+          - "83:80"
+        env_file:
+            - .env
+        links:
+            - mysql
+    mysql:
+        image: mysql:5.5
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        ports:
+            - "3307:3307"
+        env_file:
+              - .env
